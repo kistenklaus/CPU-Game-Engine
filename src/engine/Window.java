@@ -15,6 +15,7 @@ public class Window extends JFrame{
 		this.setSize(width,height);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
+		this.setUndecorated(false);
 		this.addMouseListener(input);
 		this.addKeyListener(input);
 		this.setVisible(true);

@@ -48,6 +48,7 @@ public class Engine implements Runnable{
 	
 	public void refresh(double fD) {
 		this.renderer.createFrame();
+		this.container.tick(fD);
 		this.container.render(this.renderer);
 		
 		this.window.repaint(renderer.getFrame());
