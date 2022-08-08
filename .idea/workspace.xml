@@ -3,19 +3,28 @@
   <component name="ChangeListManager">
     <list default="true" id="4a40a854-e984-43ac-b598-574810b53d13" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPU-Graphics-Engine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CPU-Graphics-Engine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boot/Boot.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/Clock.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/Container.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/Frame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/Renderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/Window.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/gfx/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/gfx/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/gfx/renderPrograms/FragmentProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/gfx/renderPrograms/FragmentProgram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/gfx/renderPrograms/RenderProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/gfx/renderPrograms/RenderProgram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/gfx/renderPrograms/VertexTransform.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/Container_dummy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Container_dummy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/Fragment_dummy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/Vertex_dummy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/math/Vec.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/Frame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/Input.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/Renderer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/Window.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/gfx/entity/Entity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/gfx/model/Model.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/gfx/model/Triangle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/gfx/model/Vertex.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/gfx/programs/RenderProgram.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/gfx/programs/VertexProgram.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/Container_dummy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/VertexDummy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/math/DataType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/math/Mat4.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/math/Maths.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/math/Vec2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/math/Vec3.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/math/Vec4.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +50,7 @@
     "WebServerToolWindowFactoryState": "false"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.engine.boot.Boot">
     <configuration name="Boot" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="boot.Boot" />
       <module name="CPU-Graphics-Engine" />
@@ -55,8 +64,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="engine.boot.Boot" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="engine.boot.Boot" />
+      <module name="CPU-Graphics-Engine" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="engine.boot.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.engine.boot.Boot" />
         <item itemvalue="Application.Boot" />
       </list>
     </recent_temporary>
@@ -69,7 +92,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1659965486079</updated>
-      <workItem from="1659965487310" duration="689000" />
+      <workItem from="1659965487310" duration="2225000" />
     </task>
     <servers />
   </component>

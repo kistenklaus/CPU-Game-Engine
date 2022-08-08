@@ -1,63 +1,86 @@
 package engine;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
+import engine.gfx.Renderer;
+import engine.window.Frame;
+import engine.window.Window;
+
 public class Engine implements Runnable{
 	private Window window;
 	private Renderer renderer;
-	private Input input;
-	private Clock clock;
-	private Container container;
-	private Thread thread;
-	
+	private Thread engineThread;
+	private Logic logic;
 	private boolean running;
-	
-	public Engine(int win_width, int win_height, Container container) {
-		this.container = container;
-		this.clock = new Clock(this, 60);
-		this.input = new Input(this);
-		this.window = new Window(win_width, win_height, input, "CPU_Graphic-Engine");
-		this.renderer = new Renderer(container.getCONTAINER_WIDTH(), container.getCONTAINER_HEIGHT());
+	public Engine(int width, int height, Logic logic) {
 		this.running = false;
-		this.container.init();
+		this.window = new Window(width,height,new WindowEventHandler(this),"CPU_Graphic-Engine");
+		this.renderer = new Renderer(width,height);
+		this.logic = logic;
+		this.logic.setWindowWidth(width);
+		this.logic.setWindowHeight(height);
+		this.logic.init();
 	}
-
+	
 	public void start() {
-		if(!this.running) {
-			this.thread = new Thread(this);
-			this.thread.start();
+		if (!this.running) {
+			this.engineThread = new Thread(this);
 			this.running = true;
+			this.engineThread.start();
 		}
 	}
+
 	public void stop() {
-		System.out.println(this.running);
 		if(this.running) {
 			this.running = false;
 			try {
-				this.thread.join(3000);
+				this.engineThread.join(500);
 			} catch (InterruptedException e) {e.printStackTrace();}
 		}
 	}
 	
 	@Override
 	public void run() {
-		clock.init();
+		long lastFrame = System.nanoTime();
+		
 		while(this.running) {
-			clock.update();
+			Frame frame = this.window.introduceFrame();
+			renderer.setFrame(frame);
+			renderer.clearPixels(0x000000);
+			this.logic.drawFrame(this.renderer);
+			this.window.paintFrame(frame);
+			
+			
+			long currFrame = System.nanoTime();
+			double delta = (currFrame-lastFrame)/1000000000d;
+			lastFrame = currFrame;
+			@SuppressWarnings("unused")
+			int fps = (int) (1/delta);
+//			System.out.println(fps);
+			
+			
 		}
 		cleanUp();
 	}
-	
-	public void refresh(double fD) {
-		this.renderer.createFrame();
-		this.container.tick(fD);
-		this.container.render(this.renderer);
-		
-		this.window.repaint(renderer.getFrame());
-	}
-	
 	private void cleanUp() {
-		System.out.println("Cleaned");
-		System.exit(1);
-		
+		this.logic.cleanUp();
 	}
 	
+	
+	private class WindowEventHandler implements WindowListener{
+		private Engine engine;
+		public WindowEventHandler(Engine engine) {
+			this.engine = engine;
+		}
+		public void windowActivated(WindowEvent arg0) {}
+		public void windowClosed(WindowEvent arg0) {}
+		public void windowClosing(WindowEvent arg0) {
+			this.engine.stop();
+		}
+		public void windowDeactivated(WindowEvent arg0) {}
+		public void windowDeiconified(WindowEvent arg0) {}
+		public void windowIconified(WindowEvent arg0) {}
+		public void windowOpened(WindowEvent arg0) {}
+	}
 }
