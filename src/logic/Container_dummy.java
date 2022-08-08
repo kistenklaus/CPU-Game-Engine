@@ -2,32 +2,27 @@ package logic;
 
 import engine.Container;
 import engine.Renderer;
-import engine.gfx.Entity;
-import engine.gfx.Model;
-import engine.gfx.renderPrograms.RenderProgram;
+import engine.gfx.entity.Entity;
+import engine.gfx.model.Model;
+import engine.gfx.programs.RenderProgram;
+import math.Mat4;
+import math.Maths;
 import math.Vec3;
 
 public class Container_dummy extends Container{
 
 	public Container_dummy() {super(240, 160);}
-
-	private Entity e1;
-	private RenderProgram renderProgram;
+	
+	private RenderProgram shader;
+	private Entity entity;
 	
 	@Override
 	public void init() {
-		this.renderProgram = new RenderProgram(new VertexDummy(), new FragmentDummy());
+		this.shader=new RenderProgram(new VertexDummy());
+		Mat4 perspectiv = Maths.perspective(60f, CON_WIDTH/(float)CON_HEIGHT, 0.1f, 100f);
+		this.shader.uniform("projection", perspectiv);
+		
 		Model model = new Model(new float[] {
-//				-50,50,0,
-//				50,50,0,
-//				50,-50,0,
-//				-50,-50,0,
-//				
-//				-50,50,-50,
-//				50,50,-50,
-//				50,-50,-50,
-//				-50,-50,-50,
-				
 				-0.5f,0.5f,0.5f,
 				0.5f,0.5f,0.5f,
 				0.5f,-0.5f,0.5f,
@@ -39,45 +34,48 @@ public class Container_dummy extends Container{
 				-0.5f,-0.5f,-0.5f
 		}, new float[] {
 				0,0,
-				0.8f,0,
-				0.8f,0.8f,
-				0,0.8f,
+				1,0,
+				1,1,
+				0,1,
+				
 				0,0,
-				0.8f,0,
-				0.8f,0.8f,
-				0,0.8f
+				1,0,
+				1,1,
+				0,1
 		}, new int[] {
+				//FONT
 				0,1,2,
 				0,2,3,
-				
-				4,5,6,
-				4,6,7,
-				
-				0,4,5,
-				0,5,1,
-				
+				//BACK
+				6,5,4,
+				4,7,6,
+				//LEFT-SIDE
 				1,5,6,
-				1,6,2,
-				
-				3,2,6,
-				3,6,7,
-				
-				7,3,0,
-				0,4,7,
-				
+				6,2,1,
+				//RIGHT-SIDE
+				3,7,4,
+				3,4,0,
+				//TOP-SIDE
+				0,4,5,
+				5,1,0,
+				//BOTTOM-SIDE
+				6,7,3,
+				6,3,2
 		});
-		this.e1 = new Entity(model, new Vec3(0,0,2f), new Vec3(0,0,0));
+		this.entity = new Entity(model, new Vec3(0, 0, 3), new Vec3(0, 0, 0));
 	}
 
 	@Override
 	public void tick(double fD) {
-		this.e1.rotateY(0.5f);
-//		this.e1.rotateX(0.1f);
+//		this.entity.rotateZ(-0.5f);
+//		this.entity.rotateX(0.3f);
+//		this.entity.rotateY(0.1f);
 	}
 
 	@Override
 	public void render(Renderer renderer) {
-		renderer.renderEntity(this.e1, renderProgram);
+		renderer.bindRenderProgram(this.shader);
+		renderer.drawEntity(this.entity);
 	}
 
 	@Override

@@ -14,5 +14,19 @@ public class Vec2 extends DataType{
 	public float getY() {
 		return data[1];
 	}
+	public Vec2 add(Vec2 v) {
+		this.add(v);
+		return this;
+	}
+	public Vec2 clone() {
+		return new Vec2(this.data.clone());
+	}
+	
+	public static Vec2 MULT(Vec2 v1, float scalar) {
+		Vec2 res = v1.clone();
+		res.mult(scalar);
+		return res;
+		
+	}
 
 }

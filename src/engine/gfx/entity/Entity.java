@@ -1,5 +1,6 @@
-package engine.gfx;
+package engine.gfx.entity;
 
+import engine.gfx.model.Model;
 import math.Vec3;
 
 public class Entity {
@@ -11,9 +12,6 @@ public class Entity {
 		this.position = position;
 		this.rotation = rotation;
 	}
-	public void move(Vec3 delta) {
-		this.position = this.position.add(delta);
-	}
 	public void rotateX(float dr) {
 		this.rotation.addtoComp(0, dr);
 	}
@@ -23,14 +21,20 @@ public class Entity {
 	public void rotateZ(float dr) {
 		this.rotation.addtoComp(2, dr);
 	}
-	public Model getModel() {
-		return model;
+	public void move(Vec3 delta) {
+		this.position.add(delta);
 	}
-	public void setModel(Model model) {
-		this.model = model;
+	public void moveX(float dx) {
+		this.position.addtoComp(0, dx);
+	}
+	public void moveY(float dy) {
+		this.position.addtoComp(1, dy);
+	}
+	public void moveZ(float dz) {
+		this.position.addtoComp(2, dz);
 	}
 	public Vec3 getPosition() {
-		return this.position;
+		return position;
 	}
 	public void setPosition(Vec3 position) {
 		this.position = position;
@@ -41,5 +45,9 @@ public class Entity {
 	public void setRotation(Vec3 rotation) {
 		this.rotation = rotation;
 	}
+	public Model getModel() {
+		return model;
+	}
+	
 	
 }

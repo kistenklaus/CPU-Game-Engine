@@ -16,13 +16,23 @@ public class Vec3 extends DataType{
 	}
 	public Vec3 cross(Vec3 vec) {
 		return new Vec3(new float[] {
-				this.getY()*vec.getZ()+this.getZ()*vec.getY(),
-				this.getZ()*vec.getX()+this.getX()*vec.getZ(),
-				this.getX()*vec.getY()+this.getY()*vec.getX()
+				this.getY()*vec.getZ()-this.getZ()*vec.getY(),
+				this.getZ()*vec.getX()-this.getX()*vec.getZ(),
+				this.getX()*vec.getY()-this.getY()*vec.getX()
 		});
 	}
 	public float dot(Vec3 vec) {
 		return (this.getX()*vec.getX()+this.getY()*vec.getY()+this.getZ()*vec.getZ());
+	}
+	public Vec3 normalize() {
+		this.mult(1f/length());
+		return this;
+	}
+	public float length() {
+		return (float) Math.sqrt(lengthSq());
+	}
+	public float lengthSq() {
+		return data[0]*data[0]+data[1]*data[1]+data[2]*data[2];
 	}
 	public static Vec3 SUB(Vec3 vec1, Vec3 vec2) {
 		return new Vec3(new float[] {

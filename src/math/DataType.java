@@ -42,13 +42,13 @@ public abstract class DataType {
 		return new DataType(this.data.clone()) {	};
 	}
 	public void multComp(int comp, float scalar) {
-		this.data[comp] = scalar;
+		this.data[comp] *= scalar;
 	}
 	
 	
 	//Casting
-	public Matrix4 mat4() {
-		return new Matrix4(this.data);
+	public Mat4 mat4() {
+		return new Mat4(this.data);
 	}
 	public Vec2 vec2() {
 		return new Vec2(this.data);

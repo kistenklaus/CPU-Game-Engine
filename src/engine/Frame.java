@@ -20,7 +20,7 @@ public class Frame {
 	public void setPixels() {
 		
 	}
-	public void paintPixel(int x, int y, int color, float alpha) {
+	public void putPixel(int x, int y, int color, float alpha) {
 		int pixelIndex = x+(con_height-y-1)*con_width;
 		this.pixels[pixelIndex] = color;
 	}
